@@ -20,6 +20,9 @@ RUN useradd builduser -m \
     && mkdir -p /build \
     && chown -R builduser:builduser /build
 
+# Set up Actions work directory to be owned by the builduser
+RUN mkdir -p /__w && chown -R builduser:builduser /__w
+
 # Install yay for AUR support
 USER builduser
 WORKDIR /build
