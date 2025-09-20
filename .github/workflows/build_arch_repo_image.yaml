@@ -36,5 +36,5 @@ jobs:
           context: ./arch-repo-image
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/arch-builder:latest
-            ghcr.io/${{ github.repository }}/arch-builder:${{ github.sha }}
+            ghcr.io/${{ steps.repo.outputs.repo }}/arch_repo__builder_image:latest
+            ghcr.io/${{ steps.repo.outputs.repo }}/arch_repo__builder_image:${{ github.sha }}
