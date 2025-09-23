@@ -1,10 +1,11 @@
-name: Build and Push Arch Linux DolphinOS-repo builder images
+name: Build and Push Arch Linux DolphinOS installation ISO builder images
 
 on:
   push:
     paths:
       - 'arch-repo-image/**'
       - '.github/workflows/build_arch_repo_image.yaml'
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * 0" #rebuilds every week
 
