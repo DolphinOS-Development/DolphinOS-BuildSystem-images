@@ -1,0 +1,40 @@
+name: Build and Push Arch Linux DolphinOS-repo builder images
+
+on:
+  push:
+    paths:
+      - 'arch-iso-image/**'
+      - '.github/workflows/build_arch_iso_builder_image.yaml'
+  schedule:
+    - cron: "0 0 * * 0" #rebuilds every week
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      
+      - name: Log in into GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set lowercase repository
+        id: repo
+        run: echo "repo=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./arch-iso-image
+          push: true
+          tags: |
+            ghcr.io/${{ steps.repo.outputs.repo }}/arch_iso_builder_image:latest
+            ghcr.io/${{ steps.repo.outputs.repo }}/arch_iso_builder_image:${{ github.sha }}
