@@ -34,5 +34,5 @@ RUN git clone https://aur.archlinux.org/yay-bin.git \
 # Default workdir for builds
 WORKDIR /buildworkdir
 
-# Switch builduser by default
-USER builduser
+# Switch to root by default
+USER root
