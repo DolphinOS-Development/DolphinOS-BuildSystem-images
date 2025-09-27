@@ -11,7 +11,7 @@ ENV LANG=C.UTF-8
 # Update system and install base build tools
 RUN echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://dolphinos-development.github.io/dolphinos-repo/x86_64" >> /etc/pacman.conf \
     && pacman -Syu --noconfirm \
-    && pacman -S --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh libspng \
+    && pacman -S --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh libspng grub memtest86+-efi efibootmgr \
     && reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist \
     && pacman -Syu --noconfirm \
     && pacman -Scc --noconfirm

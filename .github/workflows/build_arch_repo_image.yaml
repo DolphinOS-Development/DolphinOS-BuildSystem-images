@@ -1,4 +1,4 @@
-name: Build and Push Arch Linux DolphinOS installation ISO builder images
+name: Build and Push Arch Linux DolphinOS-repo builder images
 
 on:
   push:
